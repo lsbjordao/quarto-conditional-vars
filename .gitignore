@@ -1,0 +1,5 @@
+.luarc.json
+/.luarc.json
+
+/.quarto/
+**/*.quarto_ipynb

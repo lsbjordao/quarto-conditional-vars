@@ -1,0 +1,342 @@
+---
+title: Quarto Conditional Vars
+format:
+  html:
+    embed-resources: true
+filters:
+  - conditional-vars
+---
+
+![](logo.png){ width=500px }
+
+## Active variables
+
+**Code:**
+
+````markdown
+{{{< show-vars >}}}
+````
+
+**Result:**
+
+{{< show-vars >}}
+
+---
+
+## Exact match — `.when-var`
+
+**Code:**
+
+````markdown
+::: {.when-var type="detailed"}
+Shown only when `type` equals `detailed`.
+:::
+````
+
+**Result:**
+
+::: {.when-var type="detailed"}
+Shown only when `type` equals `detailed`.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var type="summary"}
+Shown only when `type` equals `summary`. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var type="summary"}
+Shown only when `type` equals `summary`.
+:::
+
+---
+
+## Inverse — `.unless-var`
+
+**Code:**
+
+````markdown
+::: {.unless-var region="north"}
+Shown in every region except `north`.
+:::
+````
+
+**Result:**
+
+::: {.unless-var region="north"}
+Shown in every region except `north`.
+:::
+
+**Code:**
+
+````markdown
+::: {.unless-var region="south"}
+Shown in every region except `south`. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.unless-var region="south"}
+Shown in every region except `south`.
+:::
+
+---
+
+## AND condition — multiple attributes
+
+**Code:**
+
+````markdown
+::: {.when-var type="detailed" region="south"}
+Shown only when `type` is `detailed` **and** `region` is `south`.
+:::
+````
+
+**Result:**
+
+::: {.when-var type="detailed" region="south"}
+Shown only when `type` is `detailed` **and** `region` is `south`.
+:::
+
+---
+
+## OR condition — pipe-separated values
+
+**Code:**
+
+````markdown
+::: {.when-var type="detailed|summary"}
+Shown when `type` is `detailed` **or** `summary`.
+:::
+````
+
+**Result:**
+
+::: {.when-var type="detailed|summary"}
+Shown when `type` is `detailed` **or** `summary`.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var type="summary|draft"}
+Shown when `type` is `summary` **or** `draft`. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var type="summary|draft"}
+Shown when `type` is `summary` **or** `draft`.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var year=">2025|<2020"}
+Shown when `year` > 2025 **or** `year` < 2020. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var year=">2025|<2020"}
+Shown when `year` > 2025 **or** `year` < 2020.
+:::
+
+---
+
+## Mixed — `.when-var` + `.unless-var`
+
+When both classes are present, use `when-<var>` and `unless-<var>` prefixes to declare each condition explicitly.
+
+**Code:**
+
+````markdown
+::: {.when-var .unless-var when-type="detailed" unless-region="north"}
+Shown when `type` is `detailed` **and** `region` is not `north`.
+:::
+````
+
+**Result:**
+
+::: {.when-var .unless-var when-type="detailed" unless-region="north"}
+Shown when `type` is `detailed` **and** `region` **is not** `north`.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var .unless-var when-type="detailed" unless-region="south"}
+Shown when `type` is `detailed` **and** `region` is not `south`. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var .unless-var when-type="detailed" unless-region="south"}
+Shown when `type` is `detailed` **and** `region` is not `south`.
+:::
+
+---
+
+## Boolean variable
+
+**Code:**
+
+````markdown
+::: {.when-var active="true"}
+Shown only when `active` is `true`.
+:::
+````
+
+**Result:**
+
+::: {.when-var active="true"}
+Shown only when `active` is `true`.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var active="false"}
+Shown only when `active` is `false`. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var active="false"}
+Shown only when `active` is `false`.
+:::
+
+---
+
+## Numeric conditions
+
+**Code:**
+
+````markdown
+::: {.when-var year=">2020"}
+Shown when `year` > 2020.
+:::
+````
+
+**Result:**
+
+::: {.when-var year=">2020"}
+Shown when `year` > 2020.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var year=">=2024"}
+Shown when `year` >= 2024.
+:::
+````
+
+**Result:**
+
+::: {.when-var year=">=2024"}
+Shown when `year` >= 2024.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var year="<2020"}
+Shown when `year` < 2020. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var year="<2020"}
+Shown when `year` < 2020.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var year="<=2023"}
+Shown when `year` <= 2023. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var year="<=2023"}
+Shown when `year` <= 2023.
+:::
+
+---
+
+## Nested variables
+
+Variables defined as nested mappings in `_variables.yml` are accessible with dot notation.
+
+**`_variables.yml`:**
+
+```yaml
+report:
+  audience: public
+  level: 2
+```
+
+**Code:**
+
+````markdown
+::: {.when-var report.audience="public"}
+Shown only when `report.audience` is `public`.
+:::
+````
+
+**Result:**
+
+::: {.when-var report.audience="public"}
+Shown only when `report.audience` is `public`.
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var report.level=">=2"}
+Shown when `report.level` >= 2.
+:::
+````
+
+**Result:**
+
+::: {.when-var report.level=">=2"}
+Shown when `report.level` >= 2.
+:::
+
+---
+
+## Unknown variables emit a warning
+
+A reference to a variable that does not exist evaluates to `false` (block hidden) and prints a warning to the console:
+
+**Code:**
+
+````markdown
+::: {.when-var country="Brazil"}
+Shown only when `country` equals `Brazil`. *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var country="Brazil"}
+Shown only when `country` equals `Brazil`.
+:::
+
+**Console warning:**
+
+[WARNING [conditional-vars]: unknown variable 'country' referenced in .when-var / .unless-var]{style="color: #e6b800; font-weight: 700;"}
