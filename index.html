@@ -2199,10 +2199,28 @@ vertical-align: -.125em;
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#active-variables" id="toc-active-variables" class="nav-link active" data-scroll-target="#active-variables">Active variables</a></li>
+  <li><a href="#exact-match-.when-var" id="toc-exact-match-.when-var" class="nav-link" data-scroll-target="#exact-match-.when-var">Exact match — <code>.when-var</code></a></li>
+  <li><a href="#inverse-.unless-var" id="toc-inverse-.unless-var" class="nav-link" data-scroll-target="#inverse-.unless-var">Inverse — <code>.unless-var</code></a></li>
+  <li><a href="#and-condition-multiple-attributes" id="toc-and-condition-multiple-attributes" class="nav-link" data-scroll-target="#and-condition-multiple-attributes">AND condition — multiple attributes</a></li>
+  <li><a href="#or-condition-pipe-separated-values" id="toc-or-condition-pipe-separated-values" class="nav-link" data-scroll-target="#or-condition-pipe-separated-values">OR condition — pipe-separated values</a></li>
+  <li><a href="#mixed-.when-var-.unless-var" id="toc-mixed-.when-var-.unless-var" class="nav-link" data-scroll-target="#mixed-.when-var-.unless-var">Mixed — <code>.when-var</code> + <code>.unless-var</code></a></li>
+  <li><a href="#boolean-variable" id="toc-boolean-variable" class="nav-link" data-scroll-target="#boolean-variable">Boolean variable</a></li>
+  <li><a href="#numeric-conditions" id="toc-numeric-conditions" class="nav-link" data-scroll-target="#numeric-conditions">Numeric conditions</a></li>
+  <li><a href="#nested-variables" id="toc-nested-variables" class="nav-link" data-scroll-target="#nested-variables">Nested variables</a></li>
+  <li><a href="#unknown-variables-emit-a-warning" id="toc-unknown-variables-emit-a-warning" class="nav-link" data-scroll-target="#unknown-variables-emit-a-warning">Unknown variables emit a warning</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -2388,6 +2406,82 @@ vertical-align: -.125em;
 <p><strong>Result:</strong></p>
 <p><strong>Console warning:</strong></p>
 <p><span style="color: #e6b800; font-weight: 700;">WARNING [conditional-vars]: unknown variable ‘country’ referenced in .when-var / .unless-var</span></p>
+<hr>
+</section>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Canonical way to use variables in Quarto:</p>
+<p><strong>Code:</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; var active &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Result:</strong></p>
+<p>true</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For inline R expressions, variables from <code>_variables.yml</code> can be made directly available using a setup chunk:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;yaml&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">&quot;The R package &#39;yaml&#39; is required. Install it with install.packages(&#39;yaml&#39;).&quot;</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>load_vars <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">file =</span> <span class="st">&quot;_variables.yml&quot;</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">envir =</span> knitr<span class="sc">::</span><span class="fu">knit_global</span>()) {</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  vars <span class="ot">&lt;-</span> yaml<span class="sc">::</span><span class="fu">read_yaml</span>(file)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (v <span class="cf">in</span> <span class="fu">names</span>(vars)) {</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">exists</span>(v, <span class="at">envir =</span> envir, <span class="at">inherits =</span> <span class="cn">FALSE</span>)) {</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sprintf</span>(</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;Variable &#39;%s&#39; from %s was not loaded because an object with this name already exists.&quot;</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>          v, file</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">call. =</span> <span class="cn">FALSE</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">assign</span>(v, vars[[v]], <span class="at">envir =</span> envir)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(vars)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="fu">load_vars</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Code:</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="at">`r active`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Result:</strong></p>
+<p>TRUE</p>
+<p><strong>Code:</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="at">`r report$audience`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Result:</strong></p>
+<p>public</p>
+</div>
+</div>
 </section>
 
 </main>

@@ -3,6 +3,7 @@ title: Quarto Conditional Vars
 format:
   html:
     embed-resources: true
+    toc: true
 filters:
   - conditional-vars
 ---
@@ -340,3 +341,75 @@ Shown only when `country` equals `Brazil`.
 **Console warning:**
 
 [WARNING [conditional-vars]: unknown variable 'country' referenced in .when-var / .unless-var]{style="color: #e6b800; font-weight: 700;"}
+
+---
+
+## Tips
+
+::: {.callout-tip}
+Canonical way to use variables in Quarto:
+
+**Code:**
+
+```{yaml}
+{{< var active >}}
+```
+
+**Result:**
+
+{{< var active >}}
+:::
+
+::: {.callout-tip}
+For inline R expressions, variables from `_variables.yml` can be made directly
+available using a setup chunk:
+
+```{r}
+if (!requireNamespace("yaml", quietly = TRUE)) {
+  stop("The R package 'yaml' is required. Install it with install.packages('yaml').")
+}
+
+load_vars <- function(file = "_variables.yml",
+                             envir = knitr::knit_global()) {
+  vars <- yaml::read_yaml(file)
+
+  for (v in names(vars)) {
+    if (exists(v, envir = envir, inherits = FALSE)) {
+      warning(
+        sprintf(
+          "Variable '%s' from %s was not loaded because an object with this name already exists.",
+          v, file
+        ),
+        call. = FALSE
+      )
+    } else {
+      assign(v, vars[[v]], envir = envir)
+    }
+  }
+
+  invisible(vars)
+}
+
+load_vars()
+```
+
+**Code:**
+
+```{yaml}
+`r active`
+```
+
+**Result:**
+
+`r active`
+
+**Code:**
+
+```{yaml}
+`r report$audience`
+```
+
+**Result:**
+
+`r report$audience`
+:::
