@@ -4,7 +4,7 @@
 
 A Quarto extension that enables conditional content blocks based on values defined in `_variables.yml` — filling a gap not covered by Quarto's built-in `.when` (which is profile-based only).
 
-Works with **all Quarto engines** (knitr, Jupyter, Julia, Observable, etc.) since it reads from `_variables.yml`, not from computation parameters.
+Works with **all Quarto engines** (knitr, Jupyter, Julia, Observable, etc.) since it reads from `_variables.yml`.
 
 ## Installation
 
