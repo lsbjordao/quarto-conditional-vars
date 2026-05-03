@@ -351,8 +351,8 @@ Canonical way to use variables in Quarto:
 
 **Code:**
 
-```{yaml}
-{{< var active >}}
+```yaml
+{{{< var active >}}}
 ```
 
 **Result:**
