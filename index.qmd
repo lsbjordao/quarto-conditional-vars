@@ -347,7 +347,8 @@ Shown only when `country` equals `Brazil`.
 ## How to call variables in Quarto
 
 ::: {.callout-tip}
-Canonical way to use variables in Quarto:
+
+## Canonical way to use variables in Quarto
 
 **Code:**
 
