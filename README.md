@@ -68,6 +68,33 @@ Shown in every region except `north`.
 
 ---
 
+### Inline conditionals
+
+You can use the same logic inline with span attributes:
+
+```markdown
+This text [appears only for detailed reports]{.when-var type="detailed"} in the same paragraph.
+
+This text [is hidden in south region]{.unless-var region="south"}.
+
+Inline OR: [works for `south` or `north`]{.when-var region="south|north"}.
+
+Inline numeric: [shown when year is >= 2024]{.when-var year=">=2024"}.
+
+Inline numeric range (50% <= support_pct < 60%):
+[in range]{.when-var support_pct=">=50&<60"}
+
+Support by percentage (`support_pct`):
+[weak support]{.when-var support_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_pct=">=40" unless-support_pct=">=70"}
+[strong support]{.when-var support_pct=">=70"}
+```
+
+`when-<var>` and `unless-<var>` prefixes also work inline when both classes are present.
+You can also combine constraints for the same variable with `&` (AND), and combine alternatives with `|` (OR).
+
+---
+
 ### AND — multiple attributes
 
 All attributes must match simultaneously.
@@ -102,7 +129,7 @@ Shown when `year` > 2025 or `year` < 2020.
 
 ### Numeric comparisons
 
-Supports `>`, `>=`, `<`, `<=` operators.
+Supports `>`, `>=`, `<`, `<=` operators, and `&` for AND ranges.
 
 ```markdown
 ::: {.when-var year=">2020"}
@@ -119,6 +146,22 @@ Shown when `year` < 2024.
 
 ::: {.when-var year="<=2023"}
 Shown when `year` <= 2023.
+:::
+
+::: {.when-var year=">=2020&<2025"}
+Shown when `year` is in [2020, 2025).
+:::
+
+::: {.when-var year=">=2025&<2030"}
+Shown when `year` is in [2025, 2030).
+:::
+
+::: {.when-var year=">=2020&<2023|>=2024&<2026"}
+Shown when `year` is in [2020, 2023) or [2024, 2026).
+:::
+
+::: {.when-var year=">=2010&<2015|>=2030&<2035"}
+Shown when `year` is in [2010, 2015) or [2030, 2035).
 :::
 ```
 

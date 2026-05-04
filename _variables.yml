@@ -2,6 +2,10 @@ type: detailed
 region: south
 active: true
 year: 2024
+support_pct: 58
+support_weak_pct: 28
+support_moderate_pct: 58
+support_strong_pct: 82
 report:
   audience: public
   level: 2

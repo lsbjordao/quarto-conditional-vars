@@ -276,6 +276,180 @@ Shown when `year` <= 2023. *(should not appear)*
 Shown when `year` <= 2023.
 :::
 
+**Code:**
+
+````markdown
+::: {.when-var year=">=2020&<2025"}
+Shown when `year` is in [2020, 2025). 
+:::
+````
+
+**Result:**
+
+::: {.when-var year=">=2020&<2025"}
+Shown when `year` is in [2020, 2025). 
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var year=">=2025&<2030"}
+Shown when `year` is in [2025, 2030). *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var year=">=2025&<2030"}
+Shown when `year` is in [2025, 2030).
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var year=">=2020&<2023|>=2024&<2026"}
+Shown when `year` is in [2020, 2023) **or** [2024, 2026).
+:::
+````
+
+**Result:**
+
+::: {.when-var year=">=2020&<2023|>=2024&<2026"}
+Shown when `year` is in [2020, 2023) **or** [2024, 2026).
+:::
+
+**Code:**
+
+````markdown
+::: {.when-var year=">=2010&<2015|>=2030&<2035"}
+Shown when `year` is in [2010, 2015) **or** [2030, 2035). *(should not appear)*
+:::
+````
+
+**Result:**
+
+::: {.when-var year=">=2010&<2015|>=2030&<2035"}
+Shown when `year` is in [2010, 2015) **or** [2030, 2035).
+:::
+
+---
+
+## Inline conditionals
+
+**Code:**
+
+````markdown
+Inline: [visible only when `type` is `detailed`]{.when-var type="detailed"}.
+````
+
+**Result:**
+
+Inline: [visible only when `type` is `detailed`]{.when-var type="detailed"}.
+
+**Code:**
+
+````markdown
+Inline: [hidden when `region` is `south`]{.unless-var region="south"}. *(should not appear)*
+````
+
+**Result:**
+
+Inline: [hidden when `region` is `south`]{.unless-var region="south"}.
+
+**Code:**
+
+````markdown
+Inline OR: [visible for `south` or `north`]{.when-var region="south|north"}.
+````
+
+**Result:**
+
+Inline OR: [visible for `south` or `north`]{.when-var region="south|north"}.
+
+**Code:**
+
+````markdown
+Inline numeric: [shown when year is >= 2024]{.when-var year=">=2024"}.
+````
+
+**Result:**
+
+Inline numeric: [shown when year is >= 2024]{.when-var year=">=2024"}.
+
+**Code:**
+
+````markdown
+Inline numeric range (50% <= support_pct < 60%):
+[in range]{.when-var support_pct=">=50&<60"}
+
+Equivalent form:
+[in range]{.when-var .unless-var when-support_pct=">=50" unless-support_pct=">=60"}
+````
+
+**Result:**
+
+Inline numeric range (50% <= support_pct < 60%):
+[in range]{.when-var support_pct=">=50&<60"}
+
+Equivalent form:
+[in range]{.when-var .unless-var when-support_pct=">=50" unless-support_pct=">=60"}
+
+**Code:**
+
+````markdown
+Support ({{< var support_pct >}}):
+[weak support]{.when-var support_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_pct=">=40" unless-support_pct=">=70"}
+[strong support]{.when-var support_pct=">=70"}
+````
+
+**Result:**
+
+Support ({{< var support_pct >}}):
+[weak support]{.when-var support_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_pct=">=40" unless-support_pct=">=70"}
+[strong support]{.when-var support_pct=">=70"}
+
+**Code:**
+
+````markdown
+Front comparison with multiple numeric supports:
+
+Scenario A (28%):
+[weak support]{.when-var support_weak_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_weak_pct=">=40" unless-support_weak_pct=">=70"}
+[strong support]{.when-var support_weak_pct=">=70"}
+
+Scenario B (58%):
+[weak support]{.when-var support_moderate_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_moderate_pct=">=40" unless-support_moderate_pct=">=70"}
+[strong support]{.when-var support_moderate_pct=">=70"}
+
+Scenario C (82%):
+[weak support]{.when-var support_strong_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_strong_pct=">=40" unless-support_strong_pct=">=70"}
+[strong support]{.when-var support_strong_pct=">=70"}
+````
+
+**Result:**
+
+Front comparison with multiple numeric supports:
+
+Scenario A (28%):
+[weak support]{.when-var support_weak_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_weak_pct=">=40" unless-support_weak_pct=">=70"}
+[strong support]{.when-var support_weak_pct=">=70"}
+
+Scenario B (58%):
+[weak support]{.when-var support_moderate_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_moderate_pct=">=40" unless-support_moderate_pct=">=70"}
+[strong support]{.when-var support_moderate_pct=">=70"}
+
+Scenario C (82%):
+[weak support]{.when-var support_strong_pct="<40"}
+[moderate support]{.when-var .unless-var when-support_strong_pct=">=40" unless-support_strong_pct=">=70"}
+[strong support]{.when-var support_strong_pct=">=70"}
+
 ---
 
 ## Nested variables

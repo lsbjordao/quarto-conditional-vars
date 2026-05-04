@@ -65,13 +65,27 @@ local function parse_condition(s)
   return nil, s
 end
 
+local function trim(s)
+  return (tostring(s):gsub("^%s+", ""):gsub("%s+$", ""))
+end
+
 local function value_matches(var_val, required_val)
+  required_val = trim(required_val)
+
   if required_val:find("|", 1, true) then
     for part in required_val:gmatch("[^|]+") do
       if value_matches(var_val, part) then return true end
     end
     return false
   end
+
+  if required_val:find("&", 1, true) then
+    for part in required_val:gmatch("[^&]+") do
+      if not value_matches(var_val, part) then return false end
+    end
+    return true
+  end
+
   local op, threshold = parse_condition(required_val)
   if op == nil then
     if type(var_val) == "boolean" then
@@ -80,7 +94,7 @@ local function value_matches(var_val, required_val)
     return tostring(var_val) == tostring(required_val)
   end
   local n_var       = tonumber(tostring(var_val))
-  local n_threshold = tonumber(threshold)
+  local n_threshold = tonumber(trim(threshold))
   if n_var == nil or n_threshold == nil then return false end
   if op == ">"  then return n_var >  n_threshold end
   if op == ">=" then return n_var >= n_threshold end
@@ -117,7 +131,21 @@ local function matches_combined(el_attrs)
   return true
 end
 
--- Two-pass: populate doc_vars from _variables.yml first, then filter Divs.
+local function should_show(el)
+  local has_when   = el.classes:includes("when-var")
+  local has_unless = el.classes:includes("unless-var")
+  if not has_when and not has_unless then return nil end
+
+  if has_when and has_unless then
+    return matches_combined(el.attributes)
+  elseif has_when then
+    return matches(el.attributes)
+  else
+    return not matches(el.attributes)
+  end
+end
+
+-- Two-pass: populate doc_vars from _variables.yml first, then filter Divs/Spans.
 return {
   {
     Meta = function(_)
@@ -126,19 +154,13 @@ return {
   },
   {
     Div = function(el)
-      local has_when   = el.classes:includes("when-var")
-      local has_unless = el.classes:includes("unless-var")
-      if not has_when and not has_unless then return end
-
-      local show
-      if has_when and has_unless then
-        show = matches_combined(el.attributes)
-      elseif has_when then
-        show = matches(el.attributes)
-      else
-        show = not matches(el.attributes)
-      end
-
+      local show = should_show(el)
+      if show == nil then return end
+      return show and el.content or {}
+    end,
+    Span = function(el)
+      local show = should_show(el)
+      if show == nil then return end
       return show and el.content or {}
     end
   }
