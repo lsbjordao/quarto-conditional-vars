@@ -2407,7 +2407,7 @@ vertical-align: -.125em;
 <p><strong>Code:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="an">Inline:</span><span class="co"> [visible only when `type` is `detailed`]{.when-var type=&quot;detailed&quot;}.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
-<p>Inline: visible only when <code>type</code> is <code>detailed</code>.</p>
+<p>Inline: <span>visible only when <code>type</code> is <code>detailed</code></span>.</p>
 <p><strong>Code:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="an">Inline:</span><span class="co"> [hidden when `region` is `south`]{.unless-var region=&quot;south&quot;}. *(should not appear)*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
@@ -2415,11 +2415,11 @@ vertical-align: -.125em;
 <p><strong>Code:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="an">Inline OR:</span><span class="co"> [visible for `south` or `north`]{.when-var region=&quot;south|north&quot;}.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
-<p>Inline OR: visible for <code>south</code> or <code>north</code>.</p>
+<p>Inline OR: <span>visible for <code>south</code> or <code>north</code></span>.</p>
 <p><strong>Code:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="an">Inline numeric:</span><span class="co"> [shown when year is &gt;= 2024]{.when-var year=&quot;&gt;=2024&quot;}.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
-<p>Inline numeric: shown when year is &gt;= 2024.</p>
+<p>Inline numeric: <span>shown when year is &gt;= 2024</span>.</p>
 <p><strong>Code:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Inline numeric range (50% &lt;= support_pct &lt; 60%):</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">in range</span><span class="co">]</span>{.when-var support_pct=&quot;&gt;=50&amp;&lt;60&quot;}</span>
@@ -2427,56 +2427,63 @@ vertical-align: -.125em;
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>Equivalent form:</span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">in range</span><span class="co">]</span>{.when-var .unless-var when-support_pct=&quot;&gt;=50&quot; unless-support_pct=&quot;&gt;=60&quot;}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
-<p>Inline numeric range (50% &lt;= support_pct &lt; 60%): in range</p>
-<p>Equivalent form: in range</p>
+<p>Inline numeric range (50% &lt;= support_pct &lt; 60%): <span>in range</span></p>
+<p>Equivalent form: <span>in range</span></p>
 <p><strong>Code:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Support (58):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">weak support</span><span class="co">]</span>{.when-var support_pct=&quot;&lt;40&quot;}</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">moderate support</span><span class="co">]</span>{.when-var .unless-var when-support_pct=&quot;&gt;=40&quot; unless-support_pct=&quot;&gt;=70&quot;}</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">strong support</span><span class="co">]</span>{.when-var support_pct=&quot;&gt;=70&quot;}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
-<p>Support (58): moderate support </p>
+<p>Support (58): <span>moderate support</span> </p>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="an">Front comparison with multiple numeric supports:</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>Scenario A (28%):</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">weak support</span><span class="co">]</span>{.when-var support_weak_pct=&quot;&lt;40&quot;}</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">moderate support</span><span class="co">]</span>{.when-var .unless-var when-support_weak_pct=&quot;&gt;=40&quot; unless-support_weak_pct=&quot;&gt;=70&quot;}</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">strong support</span><span class="co">]</span>{.when-var support_weak_pct=&quot;&gt;=70&quot;}</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>Scenario B (58%):</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">weak support</span><span class="co">]</span>{.when-var support_moderate_pct=&quot;&lt;40&quot;}</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">moderate support</span><span class="co">]</span>{.when-var .unless-var when-support_moderate_pct=&quot;&gt;=40&quot; unless-support_moderate_pct=&quot;&gt;=70&quot;}</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">strong support</span><span class="co">]</span>{.when-var support_moderate_pct=&quot;&gt;=70&quot;}</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>Scenario C (82%):</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">weak support</span><span class="co">]</span>{.when-var support_strong_pct=&quot;&lt;40&quot;}</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">moderate support</span><span class="co">]</span>{.when-var .unless-var when-support_strong_pct=&quot;&gt;=40&quot; unless-support_strong_pct=&quot;&gt;=70&quot;}</span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">strong support</span><span class="co">]</span>{.when-var support_strong_pct=&quot;&gt;=70&quot;}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Support with color (58%):</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">**weak**</span><span class="co">]</span>{.when-var support_pct=&quot;&lt;40&quot; style=&quot;color: #cc0000;&quot;}</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">**moderate**</span><span class="co">]</span>{.when-var .unless-var when-support_pct=&quot;&gt;=40&quot; unless-support_pct=&quot;&gt;=70&quot; style=&quot;color: #e6b800;&quot;}</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">**strong**</span><span class="co">]</span>{.when-var support_pct=&quot;&gt;=70&quot; style=&quot;color: #2e7d32;&quot;}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Result:</strong></p>
+<p>Support with color (58%): <span style="color: #e6b800;"><strong>moderate</strong></span> </p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="an">Front comparison with multiple numeric supports:</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Scenario A (28%):</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">weak support</span><span class="co">]</span>{.when-var support_weak_pct=&quot;&lt;40&quot;}</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">moderate support</span><span class="co">]</span>{.when-var .unless-var when-support_weak_pct=&quot;&gt;=40&quot; unless-support_weak_pct=&quot;&gt;=70&quot;}</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">strong support</span><span class="co">]</span>{.when-var support_weak_pct=&quot;&gt;=70&quot;}</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>Scenario B (58%):</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">weak support</span><span class="co">]</span>{.when-var support_moderate_pct=&quot;&lt;40&quot;}</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">moderate support</span><span class="co">]</span>{.when-var .unless-var when-support_moderate_pct=&quot;&gt;=40&quot; unless-support_moderate_pct=&quot;&gt;=70&quot;}</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">strong support</span><span class="co">]</span>{.when-var support_moderate_pct=&quot;&gt;=70&quot;}</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>Scenario C (82%):</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">weak support</span><span class="co">]</span>{.when-var support_strong_pct=&quot;&lt;40&quot;}</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">moderate support</span><span class="co">]</span>{.when-var .unless-var when-support_strong_pct=&quot;&gt;=40&quot; unless-support_strong_pct=&quot;&gt;=70&quot;}</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">strong support</span><span class="co">]</span>{.when-var support_strong_pct=&quot;&gt;=70&quot;}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
 <p>Front comparison with multiple numeric supports:</p>
-<p>Scenario A (28%): weak support </p>
-<p>Scenario B (58%): moderate support </p>
-<p>Scenario C (82%): strong support</p>
+<p>Scenario A (28%): <span>weak support</span> </p>
+<p>Scenario B (58%): <span>moderate support</span> </p>
+<p>Scenario C (82%): <span>strong support</span></p>
 <hr>
 </section>
 <section id="nested-variables" class="level2">
 <h2 class="anchored" data-anchor-id="nested-variables">Nested variables</h2>
 <p>Variables defined as nested mappings in <code>_variables.yml</code> are accessible with dot notation.</p>
 <p><strong><code>_variables.yml</code>:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span><span class="kw">:</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">audience</span><span class="kw">:</span><span class="at"> public</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span><span class="kw">:</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">audience</span><span class="kw">:</span><span class="at"> public</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>::: {.when-var report.audience=&quot;public&quot;}</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>Shown only when <span class="in">`report.audience`</span> is <span class="in">`public`</span>.</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>::: {.when-var report.audience=&quot;public&quot;}</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>Shown only when <span class="in">`report.audience`</span> is <span class="in">`public`</span>.</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
 <p>Shown only when <code>report.audience</code> is <code>public</code>.</p>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>::: {.when-var report.level=&quot;&gt;=2&quot;}</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>Shown when <span class="in">`report.level`</span> &gt;= 2.</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>::: {.when-var report.level=&quot;&gt;=2&quot;}</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>Shown when <span class="in">`report.level`</span> &gt;= 2.</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
 <p>Shown when <code>report.level</code> &gt;= 2.</p>
 <hr>
@@ -2485,9 +2492,9 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="unknown-variables-emit-a-warning">Unknown variables emit a warning</h2>
 <p>A reference to a variable that does not exist evaluates to <code>false</code> (block hidden) and prints a warning to the console:</p>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>::: {.when-var country=&quot;Brazil&quot;}</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>Shown only when <span class="in">`country`</span> equals <span class="in">`Brazil`</span>. *(should not appear)*</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>::: {.when-var country=&quot;Brazil&quot;}</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>Shown only when <span class="in">`country`</span> equals <span class="in">`Brazil`</span>. *(should not appear)*</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
 <p><strong>Console warning:</strong></p>
 <p><span style="color: #e6b800; font-weight: 700;">WARNING [conditional-vars]: unknown variable ‘country’ referenced in .when-var / .unless-var</span></p>
@@ -2506,7 +2513,7 @@ vertical-align: -.125em;
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; var active &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span><span class="at">{&lt; var active &gt;</span><span class="kw">}</span><span class="at">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Result:</strong></p>
 <p>true</p>
 </div>

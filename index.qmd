@@ -413,6 +413,22 @@ Support ({{< var support_pct >}}):
 **Code:**
 
 ````markdown
+Support with color ({{< var support_pct >}}%):
+[**weak**]{.when-var support_pct="<40" style="color: #cc0000;"}
+[**moderate**]{.when-var .unless-var when-support_pct=">=40" unless-support_pct=">=70" style="color: #e6b800;"}
+[**strong**]{.when-var support_pct=">=70" style="color: #2e7d32;"}
+````
+
+**Result:**
+
+Support with color ({{< var support_pct >}}%):
+[**weak**]{.when-var support_pct="<40" style="color: #cc0000;"}
+[**moderate**]{.when-var .unless-var when-support_pct=">=40" unless-support_pct=">=70" style="color: #e6b800;"}
+[**strong**]{.when-var support_pct=">=70" style="color: #2e7d32;"}
+
+**Code:**
+
+````markdown
 Front comparison with multiple numeric supports:
 
 Scenario A (28%):

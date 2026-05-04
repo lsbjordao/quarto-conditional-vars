@@ -161,7 +161,31 @@ return {
     Span = function(el)
       local show = should_show(el)
       if show == nil then return end
-      return show and el.content or {}
+      if not show then return {} end
+
+      -- Strip conditional classes, keep any extra ones (e.g. CSS classes)
+      local new_classes = pandoc.List()
+      for _, cls in ipairs(el.classes) do
+        if cls ~= "when-var" and cls ~= "unless-var" then
+          new_classes:insert(cls)
+        end
+      end
+
+      -- Strip conditional attributes (var names and when-/unless- prefixes),
+      -- but preserve unrelated ones such as style=, id=, etc.
+      local new_attrs = {}
+      for k, v in pairs(el.attributes) do
+        local is_when_prefix   = k:match("^when%-")
+        local is_unless_prefix = k:match("^unless%-")
+        local is_var_name      = doc_vars[k] ~= nil
+        if not is_when_prefix and not is_unless_prefix and not is_var_name then
+          new_attrs[k] = v
+        end
+      end
+
+      el.classes    = new_classes
+      el.attributes = new_attrs
+      return el
     end
   }
 }
