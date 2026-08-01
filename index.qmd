@@ -4,7 +4,6 @@ format:
   html:
     embed-resources: true
     toc: true
-    google-analytics: "G-N6QHHJHN0E"
 filters:
   - conditional-vars
 ---
