@@ -12,6 +12,23 @@ Works with **all Quarto engines** (knitr, Jupyter, Julia, Observable, etc.) sinc
 quarto add lsbjordao/quarto-conditional-params
 ```
 
+## Quarto Wizard support
+
+This extension includes Quarto Wizard metadata for editor autocompletion,
+validation, hover documentation, and snippets:
+
+- `_extensions/conditional-vars/_schema.yml`
+- `_extensions/conditional-vars/_snippets.json`
+
+Available snippet prefixes:
+
+- `show-vars`
+- `when-var-block`
+- `unless-var-block`
+- `when-var-inline`
+- `unless-var-inline`
+- `when-unless-combined`
+
 ## Setup
 
 Define your variables in `_variables.yml` at the root of your project:

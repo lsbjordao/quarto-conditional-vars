@@ -1,0 +1,41 @@
+# Schema for the conditional-vars extension
+$schema: https://m.canouil.dev/quarto-wizard/assets/schema/v2/extension-schema.json
+
+shortcodes:
+  show-vars:
+    description: "Render a bullet list of variables resolved from _variables.yml."
+
+attributes:
+  when-var:
+    "<variable>":
+      type: string
+      description: "Condition for a variable value. Supports exact match, OR (|), AND (&), and numeric operators (>, >=, <, <=)."
+      completion:
+        type: freeform
+        placeholder: "e.g. detailed, south|north, >=2024, >=50&<60"
+  unless-var:
+    "<variable>":
+      type: string
+      description: "Negated condition for a variable value. Uses the same expression syntax as when-var."
+      completion:
+        type: freeform
+        placeholder: "e.g. north, <2020, >=40&<70"
+  _any:
+    "when-<variable>":
+      type: string
+      description: "Explicit include condition used when .when-var and .unless-var are combined on the same element."
+      completion:
+        type: freeform
+        placeholder: "e.g. detailed, >=2"
+    "unless-<variable>":
+      type: string
+      description: "Explicit exclude condition used when .when-var and .unless-var are combined on the same element."
+      completion:
+        type: freeform
+        placeholder: "e.g. north, <2024"
+
+classes:
+  when-var:
+    description: "Show the element only when all declared variable conditions match values from _variables.yml."
+  unless-var:
+    description: "Show the element only when declared variable conditions do not match values from _variables.yml."

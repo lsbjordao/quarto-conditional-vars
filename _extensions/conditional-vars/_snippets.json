@@ -1,0 +1,44 @@
+{
+  "Conditional Vars: Show Variables": {
+    "prefix": "show-vars",
+    "body": ["{{< show-vars >}}"],
+    "description": "Insert the show-vars shortcode to display resolved values from _variables.yml."
+  },
+  "Conditional Vars: Block When": {
+    "prefix": "when-var-block",
+    "body": [
+      "::: {.when-var ${1:variable}=\"${2:value}\"}",
+      "$0",
+      ":::"
+    ],
+    "description": "Insert a fenced div shown only when a variable condition matches."
+  },
+  "Conditional Vars: Block Unless": {
+    "prefix": "unless-var-block",
+    "body": [
+      "::: {.unless-var ${1:variable}=\"${2:value}\"}",
+      "$0",
+      ":::"
+    ],
+    "description": "Insert a fenced div shown only when a variable condition does not match."
+  },
+  "Conditional Vars: Inline When": {
+    "prefix": "when-var-inline",
+    "body": ["[${1:text}]{.when-var ${2:variable}=\"${3:value}\"}$0"],
+    "description": "Insert inline content gated by a when-var condition."
+  },
+  "Conditional Vars: Inline Unless": {
+    "prefix": "unless-var-inline",
+    "body": ["[${1:text}]{.unless-var ${2:variable}=\"${3:value}\"}$0"],
+    "description": "Insert inline content gated by an unless-var condition."
+  },
+  "Conditional Vars: Combined Conditions": {
+    "prefix": "when-unless-combined",
+    "body": [
+      "::: {.when-var .unless-var when-${1:variable}=\"${2:value}\" unless-${3:variable}=\"${4:value}\"}",
+      "$0",
+      ":::"
+    ],
+    "description": "Insert a block combining explicit when- and unless- prefixed conditions."
+  }
+}
